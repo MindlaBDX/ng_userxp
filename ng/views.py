@@ -45,10 +45,7 @@ def login_view(request):
 @csrf_protect
 @login_required(login_url='/login')
 def home(request):
-    return render(request, 'ng/home.html', {
-            
-        })
-
+    return render(request, 'ng/home.html', {})
 
 def create_and_login(request,username=None,name='',cookie_id=None):
     if username is None:
@@ -60,7 +57,7 @@ def create_and_login(request,username=None,name='',cookie_id=None):
 
 
 def get_name(request):
-    # if this is a POST request we need to process the form data
+    # if POST: Form submitted
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = NameForm(request.POST)
@@ -74,11 +71,14 @@ def get_name(request):
             create_and_login(request=request,name=name,cookie_id=cookie_id)
             return HttpResponseRedirect('/')
 
-    # if a GET (or any other method) we'll create a blank form
+    # else (GET): Form to be presented
     else:
         form = NameForm()
 
-    return render(request, 'ng/login_name.html', {'form': form})
+    return render(request, 'ng/main.html', {
+        'context': "login",
+        'form': form,
+    })
 
 #@login_required#(login_url='/accounts/login/')
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -194,7 +194,7 @@ def result_hearer(request, xp_uuid, meaning):
     past_interaction = PastInteraction(meaning=ms,word=w,bool_succ=bool_succ,time_id=experiment.interaction_counter,role='hearer',experiment=experiment)
     experiment.save()
     past_interaction.save()
-    return render(request, 'ng/global.html', {
+    return render(request, 'ng/main.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"hearer",
@@ -221,7 +221,7 @@ def result_speaker(request, xp_uuid, meaning, word):
     #        'experiment': experiment,
     #        'bool_succ': bool_succ,
     #    })
-    return render(request, 'ng/global.html', {
+    return render(request, 'ng/main.html', {
             'experiment': experiment,
             'bool_succ': bool_succ,
             'role':"speaker",
@@ -324,13 +324,11 @@ def result_speaker_json(request, xp_uuid, meaning, word):
 
         })
 
-
-
 @csrf_protect
 @login_required(login_url='/ng/login/')
 def choose_experiment(request,xp_cfg_name='normal'):
-    return render(request, 'ng/global.html', {
-            'context':"choose_xp"
+    return render(request, 'ng/main.html', {
+            'context':"choose_xp",
         })
 
 @csrf_protect
@@ -338,7 +336,7 @@ def choose_experiment(request,xp_cfg_name='normal'):
 def new_experiment(request,xp_cfg_name='normal'):
     experiment = Experiment.get_new_xp(user=request.user,xp_cfg_name=xp_cfg_name)
     experiment.save()
-    return render(request, 'ng/global.html', {
+    return render(request, 'ng/main.html', {
             'experiment': experiment,
             'textid': "new_xp",
             'context':"new_xp"
@@ -378,7 +376,7 @@ def continue_userxp(request, xp_uuid):
                 experiment.last_mh = None
                 experiment.last_bool_succ = False
                 experiment.save()
-                return render(request, 'ng/global.html', {
+                return render(request, 'ng/main.html', {
                     'experiment': experiment,
                     'textid': "not_involved",
                     'nb_skipped': nb_steps,
@@ -394,13 +392,13 @@ def continue_userxp(request, xp_uuid):
             experiment.update_meanings()
             experiment.update_words()
             if sp_id == experiment.get_user_agent_uuid():
-                return render(request, 'ng/global.html', {
+                return render(request, 'ng/main.html', {
                     'experiment': experiment,
                     'role':"speaker",
                     'context':"question"
                     })
             elif hr_id == experiment.get_user_agent_uuid():
-                return render(request, 'ng/global.html', {
+                return render(request, 'ng/main.html', {
                     'experiment': experiment,
                     'word': currentgame_json['w'],
                     'role':"hearer",
@@ -418,7 +416,7 @@ def exp_resume(request, xp_uuid):
     experiment = get_object_or_404(Experiment, xp_uuid=xp_uuid)
     if request.user != experiment.user:
         raise ValueError("wrong user")
-    return render(request, 'ng/global.html', {
+    return render(request, 'ng/main.html', {
             'experiment': experiment,
             'context':"resume"
             })
@@ -446,7 +444,7 @@ def score(request, xp_uuid):
     #Test if score exists
     #if not, compute and store object
     #get value
-    return render(request, 'ng/global.html', {
+    return render(request, 'ng/main.html', {
             'experiment': experiment,
             'score':score_val,
             'context':"score",

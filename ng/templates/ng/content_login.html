@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Naming Game</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" />
+    <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'ng/js.cookie.js' %}"></script>
+    <script src="{% static 'ng/change_lang.js' %}"></script>
+    <script src="{% static 'ng/script.js' %}"></script>
+    <script type="text/javascript">
+    var url_send_user_info = "{% url 'ng:send_user_info_base'  %}";
+    var url_newxp = "{% url 'ng:new_experiment'  %}";
+    var url_home = "{% url 'ng:home'  %}";
+
+    //uuid
+    function uuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0,
+                v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    //user cookie
+    if (typeof Cookies.get('NamingGameUser') === 'undefined') {
+        var user_str = uuid();
+        Cookies.set('NamingGameUser', user_str);
+    };
+    $(document).ready(function() {
+        $("#id_name_cookie_id").val($("#username").html())
+    });
+    </script>
+    <form method="post">
+        {% csrf_token %} {{ form }}
+        <input type="submit" value="Submit" />
+    </form>
+</head>
+
+<body>
+    <div class="not_displayed">
+        <span id="username"></span>
+    </div>
+</body>
+
+</html>

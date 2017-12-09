@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title id="window_title"></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <script type="text/javascript">
+        var url_logout = "{% url 'ng:logout' %}";
+        var url_home = "{% url 'ng:home' %}";
+    </script>
+    <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'ng/js.cookie.js' %}"></script>
+    <script src="{% static 'ng/change_lang.js' %}"></script>
+    <script src="{% static 'ng/script.js' %}"></script>
+</head>
+
+<body>
+    <div id="maxsize">
+        <div id="pagewrap">
+            <header>
+                {% if context == "login" %}
+                    {% include "ng/header_login.html" %}
+                {% elif context == "game" %}
+                    {% include "ng/header_game.html" %}
+                {% endif %}
+            </header>
+            <section id="content">
+                {% if context == "login" %}
+                    {% include "ng/content_login.html" %}
+                {% elif context == "game" %}
+                    {% include "ng/content_game.html" %}
+                {% endif %}
+            </section>
+            <footer>
+                {% include "ng/footer.html" %}
+            </footer>
+        </div>
+    </div>
+</body>
+{% csrf_token %}
+
+</html>

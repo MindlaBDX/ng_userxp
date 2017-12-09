@@ -1,7 +1,5 @@
 body {
     background-color: #ccc;
-    font-family: 'Indie Flower', cursive;
-    font-size: 18px;
     width: 100%;
     margin: 0px;
     text-align: center;
@@ -299,10 +297,6 @@ header, #content, #middle, #sidebar {
 
 #pagewrap, header, #content, #middle, #sidebar, footer {
   border: solid 0px #ddd; /* Put 1p here to see div borders */
-}
-
-footer{
-  display: none;
 }
 
 

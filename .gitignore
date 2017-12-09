@@ -3,3 +3,5 @@ allowed_hosts.txt
 debug.txt
 main_site/__pycache__/
 ng/__pycache__/
+init_db_done
+migrations/
