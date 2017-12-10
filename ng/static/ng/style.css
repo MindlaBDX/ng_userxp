@@ -1,36 +1,67 @@
 body {
-    background-color: #ccc;
-    width: 100%;
-    margin: 0px;
-    text-align: center;
-    /*margin-left: 15px;
-    margin-right: 15px;
-    margin-bottom: 15px;
-    width: 80%;
-    margin: auto;
-    min-width: 500px;*/
-	/*background-image: url("img/speaker.png");*/
+    display:flex;
+    flex-direction: column;
+    padding:20px !important;
+}
+
+/* THREE COLUMNS LAYOUT */
+#content {
+  display:flex;
+  flex-direction:row;
+}
+
+#right {
+  flex-grow:0;
+  width:20%;
+}
+
+#middle {
+  flex-grow:1;
+}
+
+#left {
+  flex-grow:0;
+  width: 20%;
+}
+
+footer {
+  margin-top: 10px;
+  display:flex;
+  flex-direction: row;
+}
+
+/* Header */
+header {
+  display: flex;
+  flex-direction: row;
+}
+
+#header_title {
+  flex-grow:2;
+  text-align: center;
+}
+
+#header_right {
+  flex-grow:1;
+  max-width:10%;
+}
+
+#header_left {
+  flex-grow:1;
+  max-width:10%;
+}
+
+/* FORM */
+form {
+  justify-content: center;
+  display:flex;
+  flex-direction:column;
 }
 
 .speaker_heare_img_lp img,
 .meaning_chosen img,
 .meaning_chosen_check img{
   width: 25px;
-}
-
-#maxsize{
-  max-width: 1024px;
-  position: absolute;
-  margin: auto;
-    top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-#app_viewport{
-	background-color: #ddd;
-	padding-bottom: 15px;
 }
 
 #speaker_hearer_block,
@@ -120,7 +151,7 @@ div#word_speaker {
 #choose,
 #show,
 #button_next,
-.button,
+.button2,
 #word_speaker,
 #word_hearer,
 #button_next_div,
@@ -175,19 +206,16 @@ div#word_speaker {
   background-color: #ddd;
 }
 
-.button {
+.button2 {
   color: #000;
-  font-size: 20px;
   background: #57c5e6;
   padding: 8px 18px 8px 18px;
   border: solid #000000 1px;
   text-decoration: none;
-  font-family: 'Indie Flower', cursive;
-  font-size: 18px;
   border-radius: 15px;
 }
 
-.button:hover:not(:disabled) {
+.button2:hover:not(:disabled) {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
   background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
@@ -199,178 +227,21 @@ div#word_speaker {
   cursor: hand;
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #2d6ed9;
-  border: 13px none #f8fcf7;
-  border-radius: 59px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #2651d9;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #2651d9;
-}
-::-webkit-scrollbar-track {
-  background: #e6e6e6;
-  border: 0px none #f3fcf3;
-  border-radius: 45px;
-}
-::-webkit-scrollbar-track:hover {
-  background: #cccccc;
-}
-::-webkit-scrollbar-track:active {
-  background: #c1c1c1;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-/* THREE COLUMN */
-
-#pagewrap {
-  padding: 5px;
-  margin: 0px auto;
-}
-header {
-  height: 100px;
-  padding: 0 15px;
-  border-bottom: 1px solid #ddd !important;
-  margin-bottom: 10px !important;
-}
-
-#content,
-#middle,
-#sidebar{
-  min-height: 420px;
-}
-
-section#content {
-  background-color: #ccc;
-}
-
-#content {
-  width: 18%;
-  min-width: 230px;
-  float: left;
-  /*padding: 5px 15px;*/
-}
-
-#middle {
-  width: 53%; /* Account for margins + border values */
-  float: left;
-  padding: 5px 15px;
-  margin: 0px 5px 5px 5px;
-}
-
-#sidebar {
-  width: 18%;
-  min-width: 230px;
-  /*padding: 5px 15px;*/
-  float: left;
-}
-footer {
-  clear: both;
-  padding: 0 15px;
-}
-
-#content {
-  background: #ddd;
-}
-
-#sidebar {
-  background: #ddd;
-}
-
-header, #content, #middle, #sidebar {
-  margin-bottom: 5px;
-  box-sizing: border-box;
-}
-
-#pagewrap, header, #content, #middle, #sidebar, footer {
-  border: solid 0px #ddd; /* Put 1p here to see div borders */
-}
-
-
-.word_text{
-  width: 43%;
-}
-
-.score_right{
-  float:right;
-}
 /************************************************************************************
 MEDIA QUERIES
 *************************************************************************************/
 /* for 980px or less */
 @media screen and (max-width: 1023px) {
-
-  #pagewrap {
-    width: 94%;
-  }
-  #content {
-    /*width: 41%;
-    padding: 1% 4%;*/
-  }
-  #middle {
-    /*width: 41%;
-    padding: 1% 4%;*/
-    margin: 0px 0px 5px 5px;
-    float: left;
-    position: absolute;
-    margin-left: 235px;
-    width: auto;
-  }
-
-  #sidebar {
-    clear: both;
-    padding: 1% 4%;
-    width: auto;
-    float: none;
-  }
-
-  header, footer {
-    padding: 1% 4%;
-  }
-
   .meaning_img{
     width: 7vw;
     height: 7vw;
   }
-
-  .word_text{
-    width: 38%;
-  }
-
-
 }
 
 /* for 480px or less */
 @media screen and (max-width: 600px) {
-
-  header {
-    height: auto;
-  }
   h1 {
     font-size: 2em;
-  }
-
-  #middle {
-    /*width: 41%;
-    padding: 1% 4%;*/
-    margin: 0px 0px 5px 5px;
-    float: left;
-    position: relative;
-    margin-left: 0px;
-    width: auto;
   }
   #language_progress,#best_scores_div{
     width: 94%;
@@ -385,10 +256,6 @@ MEDIA QUERIES
   .word_text{
     width: 42%;
   }
-
-
-
-
 }
 
 
@@ -465,24 +332,6 @@ html.wait, html.wait * { cursor: wait !important; }
   height:12.5%;
 }
 
-#lang_switch{
-  float:left;
-}
-#main_switch{
-  float:right;
-}
-#header_inner{
-  display:inline-flex;
-  width:100%;
-}
-
-.header_button_zone{
-  width:20%;
-}
-
-.header_button{
-  width:100%;
-}
 
 .meaning_chosen_check_big{
   width:15%;

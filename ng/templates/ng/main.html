@@ -6,10 +6,12 @@
     <meta charset="utf-8">
     <title id="window_title"></title>
     <link rel="stylesheet" type="text/css" href="{% static 'ng/style.css' %}" />
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
     <script type="text/javascript">
-        var url_logout = "{% url 'ng:logout' %}";
-        var url_home = "{% url 'ng:home' %}";
+    var url_logout = "{% url 'ng:logout' %}";
+    var url_game = "{% url 'ng:game' %}";
     </script>
     <script src="{% static 'ng/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'ng/js.cookie.js' %}"></script>
@@ -18,25 +20,33 @@
 </head>
 
 <body>
-    <div id="maxsize">
-        <div id="pagewrap">
-            <header>
-                {% if context == "login" %}
-                    {% include "ng/header_login.html" %}
-                {% elif context == "game" %}
-                    {% include "ng/header_game.html" %}
-                {% endif %}
-            </header>
-            <section id="content">
-                {% if context == "login" %}
-                    {% include "ng/content_login.html" %}
-                {% elif context == "game" %}
-                    {% include "ng/content_game.html" %}
-                {% endif %}
-            </section>
-            <footer>
-                {% include "ng/footer.html" %}
-            </footer>
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <div class="content">
+                        {% if context == "login" %} {% include "ng/header_login.html" %} {% elif context == "game" %} {% include "ng/header_game.html" %} {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="centered row">
+            <div class="column">
+                <div class="ui card">
+                    <div class="content">
+                        {% if context == "login" %} {% include "ng/content_login.html" %} {% elif context == "game" %} {% include "ng/content_game.html" %} {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <div class="content">
+                        {% include "ng/footer.html" %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

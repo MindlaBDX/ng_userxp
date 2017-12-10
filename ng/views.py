@@ -44,8 +44,10 @@ def login_view(request):
 
 @csrf_protect
 @login_required(login_url='/login')
-def home(request):
-    return render(request, 'ng/home.html', {})
+def game(request):
+    return render(request, 'ng/main.html', {
+        'context': "game",
+    })
 
 def create_and_login(request,username=None,name='',cookie_id=None):
     if username is None:

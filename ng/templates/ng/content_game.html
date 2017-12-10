@@ -1,0 +1,16 @@
+{% load static %}
+<script type="text/javascript">
+    var url_new_experiment = "{% url 'ng:new_experiment' %}";
+    var url_game = "{% url 'ng:game' %}";
+var url_logout = "{% url 'ng:logout' %}";
+</script>
+
+<section id="left">
+    {% include "ng/best_scores.html" %}
+</section>
+<section id="middle">
+    {% include "ng/middle_home.html" %}
+</section>
+<section id="right">
+    {% include "ng/sidebar_home.html" %}
+</section>

@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^new_experiment/$', views.new_experiment, name='new_experiment'),
     url(r'^choose_experiment/$', views.choose_experiment, name='choose_experiment'),
     url(r'^logout/$', django.contrib.auth.views.logout, {'next_page': '/ng/login'}, name='logout'),  
-    url(r'^$',views.home,name='home'),
+    url(r'^$',views.game,name='game'),
     url(r'^(?P<xp_uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/continue/$', views.continue_userxp, name='continue'),
 
     # Internal Workers URLs
