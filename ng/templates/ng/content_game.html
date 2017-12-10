@@ -1,16 +1,24 @@
-{% load static %}
 <script type="text/javascript">
-    var url_new_experiment = "{% url 'ng:new_experiment' %}";
-    var url_game = "{% url 'ng:game' %}";
+var url_new_experiment = "{% url 'ng:new_experiment' %}";
+var url_game = "{% url 'ng:game' %}";
 var url_logout = "{% url 'ng:logout' %}";
 </script>
-
-<section id="left">
-    {% include "ng/best_scores.html" %}
-</section>
-<section id="middle">
-    {% include "ng/middle_home.html" %}
-</section>
-<section id="right">
-    {% include "ng/sidebar_home.html" %}
-</section>
+<div class="ui equal width row">
+    <div class="left floated column">
+        <div class="ui card">
+            <div class="content">
+                {% include "ng/best_scores.html" %}
+            </div>
+        </div>
+    </div>
+    <div class="eight wide column">
+        {% include "ng/middle_home.html" %}
+    </div>
+    <div class="right floated column">
+        <div class="ui card">
+            <div class="content">
+                {% include "ng/sidebar_home.html" %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,11 +1,9 @@
-{% load static %}
-			<div id="best_scores_div">
-		  		<b><span id="best_scores">Best scores</span></b>
-<hr>
-		  	
-		  		{% for score in user.score_set.all|slice:":10"|dictsortreversed:"score" %}
-			  	<div "line_meaning">
-			  		{{ forloop.counter }}. {{ score.score }}<span class="score_right">{{ username }}</span>
-			  	</div>
-			  	{% endfor %}
-		  </div>
+<div> <!-- id="best_scores" -->
+    <h4>Best scores</h4>
+    <div class="ui divider"></div>
+    {% for score in user.score_set.all|slice:":10"|dictsortreversed:"score" %}
+	    <div "line_meaning">
+	        {{ forloop.counter }}. {{ score.score }}<span class="score_right">{{ username }}</span>
+	    </div>
+    {% endfor %}
+</div>

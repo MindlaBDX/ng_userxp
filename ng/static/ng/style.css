@@ -1,7 +1,11 @@
 body {
-    display:flex;
-    flex-direction: column;
     padding:20px !important;
+    padding-left:10% !important;
+    padding-right:10% !important;
+}
+
+#best_scores {
+  height: 420px !important;
 }
 
 /* THREE COLUMNS LAYOUT */
@@ -37,7 +41,6 @@ header {
 }
 
 #header_title {
-  flex-grow:2;
   text-align: center;
 }
 

@@ -21,33 +21,12 @@
 
 <body>
     <div class="ui grid">
-        <div class="row">
-            <div class="column">
-                <div class="card">
-                    <div class="content">
-                        {% if context == "login" %} {% include "ng/header_login.html" %} {% elif context == "game" %} {% include "ng/header_game.html" %} {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="centered row">
-            <div class="column">
-                <div class="ui card">
-                    <div class="content">
-                        {% if context == "login" %} {% include "ng/content_login.html" %} {% elif context == "game" %} {% include "ng/content_game.html" %} {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <div class="card">
-                    <div class="content">
-                        {% include "ng/footer.html" %}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Header -->
+        {% if context == "login" %} {% include "ng/header_login.html" %} {% elif context == "game" %} {% include "ng/header_game.html" %} {% endif %}
+        <!-- Content -->
+        {% if context == "login" %} {% include "ng/content_login.html" %} {% elif context == "game" %} {% include "ng/content_game.html" %} {% endif %}
+        <!-- Footer -->
+        {% include "ng/footer.html" %}
     </div>
 </body>
 {% csrf_token %}
